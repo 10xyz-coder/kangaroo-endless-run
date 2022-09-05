@@ -1,0 +1,196 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Assets/back.png" type="Texture" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GameWorld.gd" type="Script" id=3]
+[ext_resource path="res://ScrollBackground.gd" type="Script" id=4]
+[ext_resource path="res://Assets/settings.webp" type="Texture" id=5]
+[ext_resource path="res://Settings.tscn" type="PackedScene" id=6]
+[ext_resource path="res://GameOver.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/UI/Movement Buttons.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 155.5, 274 )
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Assets/MorningRainbow.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = SubResource( 1 )
+
+[sub_resource type="Theme" id=3]
+Label/fonts/font = SubResource( 2 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 500, 500 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 500, 500 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 500, 500 )
+
+[sub_resource type="Theme" id=7]
+Button/styles/hover = SubResource( 4 )
+Button/styles/normal = SubResource( 8 )
+Button/styles/pressed = SubResource( 6 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 135, 0, 135, 150 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 135, 150 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="GameWorld" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="GameOver" parent="." instance=ExtResource( 7 )]
+visible = false
+
+[node name="Visibility" type="Area2D" parent="." groups=["visible"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visibility"]
+position = Vector2( 162.5, 277 )
+shape = SubResource( 9 )
+
+[node name="Sprite" type="ParallaxBackground" parent="."]
+rotation = -0.00388991
+scale = Vector2( 0.944236, 2.07044 )
+transform = Transform2D( 0.944229, -0.00367298, 0.00805378, 2.07042, 0, 0 )
+script = ExtResource( 4 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Sprite"]
+
+[node name="Sprite" type="Sprite" parent="Sprite/ParallaxLayer"]
+position = Vector2( -803.188, 29.4078 )
+scale = Vector2( 1.70114, 1 )
+texture = ExtResource( 1 )
+offset = Vector2( 457.527, 113.807 )
+
+[node name="Sprite2" type="Sprite" parent="Sprite/ParallaxLayer"]
+position = Vector2( 521.873, 29.162 )
+scale = Vector2( 1.70114, 1 )
+texture = ExtResource( 1 )
+offset = Vector2( 457.527, 113.807 )
+
+[node name="Sprite3" type="Sprite" parent="Sprite/ParallaxLayer"]
+position = Vector2( -2133.13, 30.4358 )
+scale = Vector2( 1.70114, 1 )
+texture = ExtResource( 1 )
+offset = Vector2( 457.527, 113.807 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 78, 505 )
+
+[node name="Score" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 122.0
+margin_bottom = 75.0
+rect_rotation = -0.238729
+theme = SubResource( 3 )
+text = "
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CoinTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Settings" type="Button" parent="."]
+margin_left = 522.0
+margin_top = 11.0
+margin_right = 585.0
+margin_bottom = 80.0
+theme = SubResource( 7 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsInterface" parent="." instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 41, 90 )
+
+[node name="starter" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="WallTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="HeightReduce" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="DOWN" type="Button" parent="."]
+margin_left = 511.0
+margin_top = 510.0
+margin_right = 590.0
+margin_bottom = 587.0
+flat = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="DOWN"]
+position = Vector2( 40, 39 )
+scale = Vector2( 0.6, 0.6 )
+frames = SubResource( 11 )
+
+[node name="UP" type="Button" parent="."]
+margin_left = 442.0
+margin_top = 510.0
+margin_right = 521.0
+margin_bottom = 587.0
+flat = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="UP"]
+position = Vector2( 40, 39 )
+scale = Vector2( 0.6, 0.6 )
+frames = SubResource( 13 )
+
+[connection signal="down" from="." to="." method="_on_GameWorld_down"]
+[connection signal="replay" from="GameOver" to="." method="_on_GameOver_replay"]
+[connection signal="Game_Over" from="Player" to="." method="_on_Player_Game_Over"]
+[connection signal="timeout" from="CoinTimer" to="." method="_on_CoinTimer_timeout"]
+[connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
+[connection signal="timeout" from="starter" to="." method="_on_starter_timeout"]
+[connection signal="timeout" from="WallTimer" to="." method="_on_WallTimer_timeout"]
+[connection signal="timeout" from="HeightReduce" to="." method="_on_HeightReduce_timeout"]
+[connection signal="pressed" from="DOWN" to="." method="_on_DOWN_pressed"]
+[connection signal="pressed" from="UP" to="." method="_on_UP_pressed"]

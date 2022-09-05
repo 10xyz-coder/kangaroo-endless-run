@@ -1,0 +1,107 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Text.tres" type="Theme" id=1]
+[ext_resource path="res://Assets/UI/UI_game_kangaroo_playAgain.png" type="Texture" id=2]
+[ext_resource path="res://Assets/UI/UI_game_kangaroo_exit.png" type="Texture" id=3]
+[ext_resource path="res://GameOver.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Assets/MorningRainbow.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 18
+font_data = SubResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 533, 152 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 533, 152 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 533, 152 )
+
+[sub_resource type="Theme" id=6]
+Button/styles/hover = SubResource( 3 )
+Button/styles/normal = SubResource( 4 )
+Button/styles/pressed = SubResource( 5 )
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 533, 152 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 533, 152 )
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 533, 152 )
+
+[sub_resource type="Theme" id=10]
+Button/styles/hover = SubResource( 7 )
+Button/styles/normal = SubResource( 8 )
+Button/styles/pressed = SubResource( 9 )
+
+[node name="GameOver" type="Node2D"]
+z_index = 3
+script = ExtResource( 4 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_left = 42.0
+margin_top = 68.0
+margin_right = 543.0
+margin_bottom = 425.0
+color = Color( 1, 0.752941, 0.321569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="Label" parent="Background"]
+margin_left = 18.0
+margin_top = 12.0
+margin_right = 461.0
+margin_bottom = 66.0
+theme = ExtResource( 1 )
+text = "GAME OVER"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="Background"]
+margin_left = 38.0
+margin_top = 79.0
+margin_right = 438.0
+margin_bottom = 111.0
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 2 )
+text = "FINAL SCORE :"
+valign = 1
+
+[node name="Exit" type="Button" parent="Background"]
+margin_left = 137.0
+margin_top = 259.0
+margin_right = 326.0
+margin_bottom = 312.0
+theme = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Button" parent="Background"]
+margin_left = 137.0
+margin_top = 190.0
+margin_right = 328.0
+margin_bottom = 249.0
+theme = SubResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Background/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="Background/Play" to="." method="_on_Play_pressed"]
