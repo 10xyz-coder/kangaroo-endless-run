@@ -41,3 +41,11 @@ func _physics_process(delta):
 		$Sprite.animation = 'float'
 		
 
+func reduce_height(power):
+	var tween = get_node("Tween")
+	heightX -= power
+	heightX = clamp(heightX, 1, 12)
+	tween.interpolate_property(self, "position",
+		Vector2(position.x, position.y), Vector2(position.x, 503+(heightX-1)*-37), 1,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
