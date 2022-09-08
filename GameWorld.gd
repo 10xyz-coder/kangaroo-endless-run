@@ -99,14 +99,15 @@ func _on_GameOver_replay():
 
 func _on_GameWorld_down():
 	# Make the Stairs go Down
-	$HeightReduce.wait_time = 0.25 / (0.01+gameSpeed)
+	$HeightReduce.wait_time = 0.01 / (0.01+gameSpeed)
 	downPower += 1
 	$HeightReduce.start()
 
 
 func _on_HeightReduce_timeout():
 	# Make the stairs go down
-	$Player.heightX -= downPower
+	$Player.heightX -= 0
+	$Player.reduce_height(downPower)
 	downPower = 0
 
 
