@@ -1,1 +1,1 @@
-# ker-alpha
+# Kangaroo Endless Run Source Code for Developers
