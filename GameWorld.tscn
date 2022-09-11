@@ -149,7 +149,7 @@ wait_time = 3.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="HeightReduce" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.05
 one_shot = true
 
 [node name="DOWN" type="Button" parent="."]
