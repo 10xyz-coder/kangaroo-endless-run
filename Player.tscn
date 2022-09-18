@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=81 format=2]
 
 [ext_resource path="res://Assets/Spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
@@ -319,7 +319,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 12.125, 39.5 )
+extents = Vector2( 12.125, 22.1275 )
 
 [sub_resource type="AtlasTexture" id=63]
 flags = 4
@@ -354,12 +354,32 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=66]
-extents = Vector2( 12, 2.5 )
+[sub_resource type="RectangleShape2D" id=70]
+extents = Vector2( 12.2167, 2.5 )
 
-[sub_resource type="CapsuleShape2D" id=67]
-radius = 2.0
-height = 0.0
+[sub_resource type="RectangleShape2D" id=71]
+extents = Vector2( 12.3785, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=72]
+extents = Vector2( 12.8301, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=73]
+extents = Vector2( 13.0095, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=74]
+extents = Vector2( 13.5443, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=75]
+extents = Vector2( 14.2721, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=76]
+extents = Vector2( 15.6368, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=77]
+extents = Vector2( 16.3167, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=66]
+extents = Vector2( 14.4339, 2.5 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -369,30 +389,29 @@ script = ExtResource( 4 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 1.5 )
-scale = Vector2( 1.75, 2.40625 )
+scale = Vector2( 2.188, 3.008 )
 frames = SubResource( 32 )
 animation = "float"
 frame = 7
 speed_scale = 0.8
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( 11.125, 1 )
+position = Vector2( 3.97363, 3.11892 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="." groups=["player"]]
 collision_mask = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 8, 1 )
+position = Vector2( 12.5027, 3.49245 )
 shape = SubResource( 1 )
 
 [node name="ScoreTimer" type="Timer" parent="."]
 wait_time = 0.5
 
 [node name="Ladder1" type="AnimatedSprite" parent="."]
-visible = false
 position = Vector2( 15, 57.5 )
-scale = Vector2( 1, 1.15 )
+scale = Vector2( 1.563, 1.813 )
 frames = SubResource( 65 )
 animation = "Wheel"
 script = ExtResource( 3 )
@@ -407,12 +426,13 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder1/AreaHitbox"]
-shape = SubResource( 66 )
+position = Vector2( -0.544288, 0 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 70 )
 
 [node name="Ladder2" type="AnimatedSprite" parent="."]
-visible = false
 position = Vector2( 15, 94 )
-scale = Vector2( 1, 1.15 )
+scale = Vector2( 1.563, 1.813 )
 frames = SubResource( 65 )
 animation = "Wheel"
 script = ExtResource( 3 )
@@ -425,13 +445,13 @@ __meta__ = {
 scale = Vector2( 0.95, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder2/AreaHitbox"]
-position = Vector2( 0, 0.432438 )
-shape = SubResource( 66 )
+position = Vector2( -0.144778, 0.432449 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 71 )
 
 [node name="Ladder3" type="AnimatedSprite" parent="."]
-visible = false
 position = Vector2( 15, 130.5 )
-scale = Vector2( 1, 1.15 )
+scale = Vector2( 1.563, 1.813 )
 frames = SubResource( 65 )
 animation = "Wheel"
 script = ExtResource( 3 )
@@ -447,12 +467,13 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder3/AreaHitbox"]
-shape = SubResource( 66 )
+position = Vector2( 0.0342293, 0 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 72 )
 
 [node name="Ladder4" type="AnimatedSprite" parent="."]
-visible = false
 position = Vector2( 15, 167 )
-scale = Vector2( 1, 1.15 )
+scale = Vector2( 1.563, 1.813 )
 frames = SubResource( 65 )
 animation = "Wheel"
 script = ExtResource( 3 )
@@ -465,13 +486,13 @@ __meta__ = {
 scale = Vector2( 0.85, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder4/AreaHitbox"]
-position = Vector2( 0, 16.8648 )
-shape = SubResource( 67 )
+position = Vector2( 1.00952, 0.317642 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 73 )
 
 [node name="Ladder5" type="AnimatedSprite" parent="."]
-visible = false
 position = Vector2( 15, 203.5 )
-scale = Vector2( 1, 1.15 )
+scale = Vector2( 1.563, 1.813 )
 frames = SubResource( 65 )
 animation = "Wheel"
 script = ExtResource( 3 )
@@ -487,13 +508,13 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder5/AreaHitbox"]
-position = Vector2( 0, 12.1081 )
-shape = SubResource( 66 )
+position = Vector2( 0.884745, 0.525093 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 74 )
 
 [node name="Ladder6" type="AnimatedSprite" parent="."]
-visible = false
 position = Vector2( 15, 240 )
-scale = Vector2( 1, 1.15 )
+scale = Vector2( 1.563, 1.813 )
 frames = SubResource( 65 )
 animation = "Wheel"
 script = ExtResource( 3 )
@@ -506,13 +527,13 @@ __meta__ = {
 scale = Vector2( 0.75, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder6/AreaHitbox"]
-position = Vector2( 0, 15.1352 )
-shape = SubResource( 66 )
+position = Vector2( 1.61258, 0.794312 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 75 )
 
 [node name="Ladder7" type="AnimatedSprite" parent="."]
-visible = false
 position = Vector2( 15, 276.5 )
-scale = Vector2( 1, 1.15 )
+scale = Vector2( 1.563, 1.813 )
 frames = SubResource( 65 )
 animation = "Wheel"
 script = ExtResource( 3 )
@@ -523,18 +544,15 @@ __meta__ = {
 
 [node name="AreaHitbox" type="Area2D" parent="Ladder7" groups=["ladder"]]
 scale = Vector2( 0.7, 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder7/AreaHitbox"]
-position = Vector2( 0, 12.973 )
-shape = SubResource( 66 )
+position = Vector2( 1.20299, -0.264725 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 76 )
 
 [node name="Ladder8" type="AnimatedSprite" parent="."]
-visible = false
 position = Vector2( 15, 314 )
-scale = Vector2( 1, 1.15 )
+scale = Vector2( 1.563, 1.813 )
 frames = SubResource( 65 )
 animation = "Wheel"
 script = ExtResource( 3 )
@@ -547,8 +565,9 @@ __meta__ = {
 scale = Vector2( 0.65, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder8/AreaHitbox"]
-position = Vector2( 0, 13.4054 )
-shape = SubResource( 66 )
+position = Vector2( 1.88282, -0.383926 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 77 )
 
 [node name="Ladder9" type="AnimatedSprite" parent="."]
 visible = false
@@ -613,6 +632,7 @@ __meta__ = {
 position = Vector2( 0, 25.946 )
 shape = SubResource( 66 )
 
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="area_entered" from="Ladder1/AreaHitbox" to="Ladder1" method="_on_AreaHitbox_area_entered"]

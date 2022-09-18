@@ -1,6 +1,7 @@
 extends Node2D
 
-
+var vein : int
+var id : int
 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,9 +28,10 @@ func _on_Area2D_area_exited(area):
 func _on_Area2D_area_entered(area):
 	pass
 	if area.is_in_group("ladder"):
-		$Timer.wait_time = 0.75  / (0.01+get_parent().gameSpeed)
+		$Timer.wait_time = 1.5  / (0.01+get_parent().gameSpeed)
 		$Timer.start()
 
 
 func _on_Timer_timeout():
-	get_parent().emit_signal("down")
+	if id == 1:
+		get_parent().emit_signal("down", vein)

@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 var score = 0
 var heightX = 1
+var is_falling = false
 
 signal Game_Over
 
@@ -20,7 +21,9 @@ func _on_Area2D_area_entered(area):
 	if area.is_in_group('coin'):
 		score += round(get_parent().gameSpeed*15)
 		area.get_parent().get_collected()
-	elif area.is_in_group('danger'):
+		
+	if area.is_in_group('danger'):
+		pass
 		emit_signal("Game_Over")
 		
 func _physics_process(delta):
@@ -29,12 +32,13 @@ func _physics_process(delta):
 		visible = false
 		return
 	$Sprite.speed_scale = get_parent().gameSpeed*0.6
-	if Input.is_action_just_released("ui_up"):
-		heightX += 1
-	if Input.is_action_just_released("ui_down"):
-		heightX -= 1
-	heightX = clamp(heightX, 1,12)
-	position.y = 503+(heightX-1)*-37	
+	if not is_falling:
+		if Input.is_action_just_released("ui_up"):
+			heightX += 1
+		if Input.is_action_just_released("ui_down"):
+			heightX -= 1
+	heightX = clamp(heightX, 1,8)
+	position.y = 503+(heightX-1)*-52.5#28.75	
 	if heightX == 1:
 		$Sprite.animation = 'run'
 	else:
@@ -44,8 +48,13 @@ func _physics_process(delta):
 func reduce_height(power):
 	var tween = get_node("Tween")
 	heightX -= power
-	heightX = clamp(heightX, 1, 12)
+	heightX = clamp(heightX, 1, 8)
 	tween.interpolate_property(self, "position",
-		Vector2(position.x, position.y), Vector2(position.x, 503+(heightX-1)*-37), 1,
-		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			Vector2(position.x, position.y), Vector2(position.x, 503+(heightX-1)*-52.5), 1,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	is_falling = true
 	tween.start()
+
+
+func _on_Tween_tween_completed(object, key):
+	is_falling = false

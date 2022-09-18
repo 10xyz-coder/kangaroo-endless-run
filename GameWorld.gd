@@ -6,7 +6,7 @@ var gameSpeed = 1
 var downPower = 0
 export (int) var incrementor = 0.05
 
-signal down
+signal down(vein)
 
 
 func _ready():
@@ -50,7 +50,7 @@ func _on_WallTimer_timeout():
 	var rng = RandomNumberGenerator.new()
 	
 	rng.randomize()
-	var amount = rng.randf_range(2, 10)
+	var amount = rng.randf_range(2, 6)
 	
 	rng.randomize()
 	var ud = rng.randf_range(-8, 8)
@@ -61,7 +61,7 @@ func _on_WallTimer_timeout():
 		ud = -1
 	else: 
 		ud = 2
-		num = rng.randf_range(5, 6)
+		num = rng.randf_range(3, 4)
 		amount = clamp(amount, 1, 3)
 		
 	# Too laxy to document the rest :D
@@ -71,12 +71,14 @@ func _on_WallTimer_timeout():
 		var Bar = bar.instance()
 		var positionx = 0
 		if ud == 1:
-			positionx = (503 + (n-1)*-37)
+			positionx = (503 + (n-1)*-52)
 		elif ud == -1:
-			positionx = (59 + (n-1)*37)
+			positionx = (59 + (n-1)*52)
 		else:
-			positionx = ((num * 37) + (n-1)*37)
+			positionx = 59 + ((num * 52) + (n-1)*52)
 		Bar.set_position(Vector2(545, positionx))
+		Bar.vein = amount
+		Bar.id = n
 		add_child(Bar)
 
 
@@ -97,20 +99,15 @@ func _on_GameOver_replay():
 	$SettingsInterface/Body/DiffLevel.value = 1
 
 
-func _on_GameWorld_down():
+func _on_GameWorld_down(vein):
 	# Make the Stairs go Down
 	#if downPower == 0:
 		#$HeightReduce.wait_time = 0.05  / (0.01+gameSpeed)
-	downPower += 1
+	downPower = vein
 	#$HeightReduce.start()
 	$Player.reduce_height(downPower)
-	downPower = 0
+	#downPower = 0
 
-
-func _on_HeightReduce_timeout():
-	# Make the stairs go down
-	$Player.reduce_height(downPower)
-	downPower = 0
 
 
 func _on_UP_pressed():
