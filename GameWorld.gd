@@ -113,9 +113,11 @@ func _on_GameWorld_down(vein):
 
 func _on_UP_pressed():
 	# Increase Height
-	$Player.heightX += 1
+	if not $Player.is_falling:
+		$Player.heightX += 1
 
 
 func _on_DOWN_pressed():
 	#Reduce Height
-	$Player.heightX -= 1
+	if not $Player.is_falling:
+		$Player.heightX -= 1
