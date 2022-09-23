@@ -22,7 +22,8 @@ func _on_CoinTimer_timeout():
 	var Coin = coin.instance()
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var position = rng.randf_range(35, 500)
+	var coinHeight = rng.randf_range(0, 8)
+	var position = (503 + (coinHeight-1)*-52) #rng.randf_range(35, 500)
 	Coin.set_position(Vector2(545, position))
 	add_child(Coin)
 	if gameSpeed != 0:

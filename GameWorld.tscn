@@ -153,10 +153,10 @@ wait_time = 0.05
 one_shot = true
 
 [node name="DOWN" type="Button" parent="."]
-margin_left = 511.0
-margin_top = 510.0
-margin_right = 590.0
-margin_bottom = 587.0
+margin_left = 430.0
+margin_top = 509.0
+margin_right = 509.0
+margin_bottom = 586.0
 flat = true
 __meta__ = {
 "_edit_group_": true,
@@ -169,10 +169,10 @@ scale = Vector2( 0.6, 0.6 )
 frames = SubResource( 11 )
 
 [node name="UP" type="Button" parent="."]
-margin_left = 442.0
-margin_top = 510.0
-margin_right = 521.0
-margin_bottom = 587.0
+margin_left = 517.0
+margin_top = 507.0
+margin_right = 596.0
+margin_bottom = 584.0
 flat = true
 __meta__ = {
 "_edit_group_": true,
