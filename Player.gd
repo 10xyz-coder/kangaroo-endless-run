@@ -6,6 +6,8 @@ var is_falling = false
 
 signal Game_Over
 
+onready var tween = get_node("Tween")
+
 func _ready():
 	$ScoreTimer.start()
 	$Sprite.playing = true
@@ -37,6 +39,14 @@ func _physics_process(delta):
 			heightX += 1
 		if Input.is_action_just_released("ui_down"):
 			heightX -= 1
+	else:
+		if Input.is_action_just_released("ui_up"):
+			move_up()
+			
+		if Input.is_action_just_released("ui_down"):
+			move_down()
+	
+	
 	heightX = clamp(heightX, 1,8)
 	position.y = 503+(heightX-1)*-52.5#28.75	
 	if heightX == 1:
@@ -44,9 +54,30 @@ func _physics_process(delta):
 	else:
 		$Sprite.animation = 'float'
 		
+func move_up():
+	var seeker = tween.tell()
+	tween.reset_all()
+	heightX += 1
+	is_falling = true
+	tween.interpolate_property(self, "position",
+			Vector2(position.x, position.y), Vector2(position.x, 503+(heightX-1)*-52.5), 1,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+	tween.seek(seeker)
+	
+func move_down():
+	var seeker = tween.tell()
+	tween.reset_all()
+	heightX -= 1
+	is_falling = true
+	tween.interpolate_property(self, "position",
+			Vector2(position.x, position.y), Vector2(position.x, 503+(heightX-1)*-52.5), 1,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+	tween.seek(seeker)
+		
 
 func reduce_height(power):
-	var tween = get_node("Tween")
 	heightX -= power
 	heightX = clamp(heightX, 1, 8)
 	tween.interpolate_property(self, "position",
