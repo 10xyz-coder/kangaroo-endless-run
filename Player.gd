@@ -21,7 +21,7 @@ func _on_ScoreTimer_timeout():
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group('coin'):
-		score += round(get_parent().gameSpeed*15)
+		score += round(get_parent().gameSpeed*45)
 		area.get_parent().get_collected()
 		
 	if area.is_in_group('danger'):

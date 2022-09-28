@@ -2,11 +2,15 @@ extends Node2D
 
 var vein : int
 var id : int
+var removed : Array
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	print(removed)
+	print(id)
+	print(removed.has(id))
+	print(id in removed)
 
 
 func _physics_process(delta):
@@ -14,6 +18,10 @@ func _physics_process(delta):
 	
 	if get_parent().gameSpeed == 0 or position.x < -32:
 		queue_free()
+	
+	if id in removed:
+		queue_free()
+		
 	position.x -= get_parent().gameSpeed
 
 

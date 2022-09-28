@@ -45,7 +45,9 @@ func _on_starter_timeout():
 func _on_WallTimer_timeout():
 	
 	# All of this just to generate some walls
-	
+	$WallTimer.wait_time *= 0.98
+	if $WallTimer.wait_time < (11-$SettingsInterface/Body/DiffLevel.value)/4:
+		 $WallTimer.wait_time = (11-$SettingsInterface/Body/DiffLevel.value)/4
 	if gameSpeed == 0:
 		return
 	var rng = RandomNumberGenerator.new()
@@ -72,8 +74,14 @@ func _on_WallTimer_timeout():
 	# Too laxy to document the rest :D
 	
 	if ud == 3:
-		var removed = rng.randf_range(3, 7)
-		#var removedPower = rng.randf_range(1, round(5/gameSpeed)+1)
+		var removed
+		if rng.randf_range(1, 2) == 1 and gameSpeed < 8:
+			removed = [round(rng.randf_range(3, 7))]
+			removed.append(removed[0]+1)
+		else:
+			removed = [round(rng.randf_range(3, 7))]
+		#var removePower = round(rng.randf_range(1, round(8/gameSpeed)+1))
+		#print(str(removePower) + " And " + str(gameSpeed))
 		for n in range(1, 9, 1):
 			var Bar = bar.instance()
 			var positionx = (503 + (n-1)*-52)
@@ -81,9 +89,6 @@ func _on_WallTimer_timeout():
 			Bar.vein = amount
 			Bar.id = n
 			Bar.removed = removed
-			#if removedPower > 0:
-			#	removed += 1
-			#	removedPower += 1
 			add_child(Bar)
 	else:
 		for n in range(1, amount+1, 1):
@@ -112,6 +117,7 @@ func _on_GameOver_replay():
 	# Replaying 
 	gameSpeed = 1
 	incrementor = 0.05
+	$WallTimer.wait_time = 3
 	$GameOver.visible = false
 	$Player.score = 0
 	$Player.visible = true
