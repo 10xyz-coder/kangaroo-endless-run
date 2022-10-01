@@ -427,7 +427,6 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder1/AreaHitbox"]
 position = Vector2( -0.544288, 0 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 70 )
 
 [node name="Ladder2" type="AnimatedSprite" parent="."]
@@ -446,7 +445,6 @@ scale = Vector2( 0.95, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder2/AreaHitbox"]
 position = Vector2( -0.144778, 0.432449 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 71 )
 
 [node name="Ladder3" type="AnimatedSprite" parent="."]
@@ -468,7 +466,6 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder3/AreaHitbox"]
 position = Vector2( 0.0342293, 0 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 72 )
 
 [node name="Ladder4" type="AnimatedSprite" parent="."]
@@ -487,7 +484,6 @@ scale = Vector2( 0.85, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder4/AreaHitbox"]
 position = Vector2( 1.00952, 0.317642 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 73 )
 
 [node name="Ladder5" type="AnimatedSprite" parent="."]
@@ -509,7 +505,6 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder5/AreaHitbox"]
 position = Vector2( 0.884745, 0.525093 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 74 )
 
 [node name="Ladder6" type="AnimatedSprite" parent="."]
@@ -528,7 +523,6 @@ scale = Vector2( 0.75, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder6/AreaHitbox"]
 position = Vector2( 1.61258, 0.794312 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 75 )
 
 [node name="Ladder7" type="AnimatedSprite" parent="."]
@@ -547,7 +541,6 @@ scale = Vector2( 0.7, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder7/AreaHitbox"]
 position = Vector2( 1.20299, -0.264725 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 76 )
 
 [node name="Ladder8" type="AnimatedSprite" parent="."]
@@ -566,7 +559,6 @@ scale = Vector2( 0.65, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder8/AreaHitbox"]
 position = Vector2( 1.88282, -0.383926 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 77 )
 
 [node name="Ladder9" type="AnimatedSprite" parent="."]
