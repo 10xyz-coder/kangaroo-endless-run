@@ -8,6 +8,8 @@ signal Game_Over
 
 onready var tween = get_node("Tween")
 
+var collisionShape = preload("res://Physics/PlayerHitbox.tres")
+
 func _ready():
 	$ScoreTimer.start()
 	$Sprite.playing = true
@@ -89,3 +91,13 @@ func reduce_height(power):
 
 func _on_Tween_tween_completed(object, key):
 	is_falling = false
+
+
+func _on_Tween_tween_started(object, key):
+	while get_node("Area2D").position >= Vector2(position.x, 503+(heightX-1)*-52.5):
+		var shape = collisionShape.duplicate()
+		shape.position = Vector2(position.x, position.y)
+		get_node("Area2D").set_shape(shape)
+		
+		yield(get_tree().create_timer(0.05), "timeout")
+		continue

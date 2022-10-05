@@ -14,6 +14,9 @@ func _ready():
 
 func _process(delta):
 	$Score.text = str($Player.score)
+	$Drill.position.y = $Player.position.y
+	if Input.is_action_just_pressed("ui_home"):
+		$Drill.activate(5)
 
 
 func _on_CoinTimer_timeout():
@@ -27,7 +30,8 @@ func _on_CoinTimer_timeout():
 	Coin.set_position(Vector2(545, position))
 	add_child(Coin)
 	if gameSpeed != 0:
-		gameSpeed += (incrementor/(gameSpeed+0.01))
+		gameSpeed += (incrementor/(gameSpeed+0.01))*2
+		print(gameSpeed)
 
 
 func _on_Settings_pressed():
@@ -47,7 +51,8 @@ func _on_WallTimer_timeout():
 	# All of this just to generate some walls
 	$WallTimer.wait_time *= 0.98
 	if $WallTimer.wait_time < (11-$SettingsInterface/Body/DiffLevel.value)/4:
-		 $WallTimer.wait_time = (11-$SettingsInterface/Body/DiffLevel.value)/4
+		$WallTimer.wait_time = (11-$SettingsInterface/Body/DiffLevel.value)/4
+		$CoinTimer.wait_time = $WallTimer.wait_time
 	if gameSpeed == 0:
 		return
 	var rng = RandomNumberGenerator.new()
@@ -75,8 +80,12 @@ func _on_WallTimer_timeout():
 	
 	if ud == 3:
 		var removed
-		if rng.randf_range(1, 2) == 1 and gameSpeed < 8:
-			removed = [round(rng.randf_range(3, 7))]
+		if rng.randi_range(1, 2) == 1 and gameSpeed < 6:
+			removed = [round(rng.randf_range(2, 5))]
+			removed.append(removed[0]+1)
+			removed.append(removed[1]+1)
+		elif rng.randi_range(1, 2) == 1 and gameSpeed < 8:
+			removed = [round(rng.randf_range(2, 6))] 
 			removed.append(removed[0]+1)
 		else:
 			removed = [round(rng.randf_range(3, 7))]
@@ -90,6 +99,7 @@ func _on_WallTimer_timeout():
 			Bar.id = n
 			Bar.removed = removed
 			add_child(Bar)
+		print("spawned" + str(removed))
 	else:
 		for n in range(1, amount+1, 1):
 			var Bar = bar.instance()
