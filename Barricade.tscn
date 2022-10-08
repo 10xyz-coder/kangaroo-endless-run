@@ -25,6 +25,7 @@ frames = SubResource( 1 )
 animation = "proto"
 
 [node name="Area2D" type="Area2D" parent="." groups=["danger"]]
+collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -3.17891e-07, 1.66667 )

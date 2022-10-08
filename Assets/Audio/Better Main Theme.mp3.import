@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Better Main Theme.mp3-51865800cf6ca916b89d7079bef1883b.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Better Main Theme.mp3"
+dest_files=[ "res://.import/Better Main Theme.mp3-51865800cf6ca916b89d7079bef1883b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

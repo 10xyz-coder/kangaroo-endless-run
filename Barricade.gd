@@ -7,10 +7,7 @@ var removed : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(removed)
-	print(id)
-	print(removed.has(id))
-	print(id in removed)
+	pass
 
 
 func _physics_process(delta):
@@ -23,6 +20,8 @@ func _physics_process(delta):
 		queue_free()
 		
 	position.x -= get_parent().gameSpeed
+	
+	
 
 
 # Old Falling Down Code
@@ -34,10 +33,11 @@ func _on_Area2D_area_exited(area):
 
 
 func _on_Area2D_area_entered(area):
-	pass
 	if area.is_in_group("ladder"):
 		$Timer.wait_time = 1.5  / (0.01+get_parent().gameSpeed)
 		$Timer.start()
+	if area.is_in_group("drill"):
+		queue_free()
 
 
 func _on_Timer_timeout():
