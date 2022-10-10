@@ -2,6 +2,7 @@ extends AnimatedSprite
 
 var move = false
 
+signal is_colliding(val, obj)
 func _ready():
 	animation = "default"
 	position.y = ( ( int(editor_description) - 2) * 52.5 ) + 57.5
@@ -28,6 +29,7 @@ func _on_AreaHitbox_area_entered(area):
 		#visible = true
 	if area.is_in_group("danger"):
 		move = true
+		emit_signal("is_colliding", true, area)
 
 
 func _on_AreaHitbox_area_exited(area):
@@ -36,3 +38,4 @@ func _on_AreaHitbox_area_exited(area):
 	if area.is_in_group("danger"):
 		yield(get_tree().create_timer(0.2), "timeout")
 		move = false
+		emit_signal("is_colliding", false, area)
