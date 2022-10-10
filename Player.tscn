@@ -319,16 +319,6 @@ animations = [ {
 "speed": 30.0
 } ]
 
-[sub_resource type="AtlasTexture" id=63]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 128, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=64]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 32, 128, 32, 32 )
-
 [sub_resource type="AtlasTexture" id=68]
 flags = 4
 atlas = ExtResource( 1 )
@@ -339,17 +329,27 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 32, 160, 32, 32 )
 
+[sub_resource type="AtlasTexture" id=63]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 128, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=64]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 32, 128, 32, 32 )
+
 [sub_resource type="SpriteFrames" id=65]
 animations = [ {
-"frames": [ SubResource( 63 ), SubResource( 64 ) ],
-"loop": true,
-"name": "default",
-"speed": 2.0
-}, {
 "frames": [ SubResource( 68 ), SubResource( 69 ) ],
 "loop": true,
 "name": "Wheel",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 63 ), SubResource( 64 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=70]
@@ -626,25 +626,36 @@ shape = SubResource( 66 )
 [connection signal="tween_started" from="Tween" to="." method="_on_Tween_tween_started"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
+[connection signal="is_colliding" from="Ladder1" to="." method="is_colliding"]
 [connection signal="area_entered" from="Ladder1/AreaHitbox" to="Ladder1" method="_on_AreaHitbox_area_entered"]
 [connection signal="area_exited" from="Ladder1/AreaHitbox" to="Ladder1" method="_on_AreaHitbox_area_exited"]
+[connection signal="is_colliding" from="Ladder2" to="." method="is_colliding"]
 [connection signal="area_entered" from="Ladder2/AreaHitbox" to="Ladder2" method="_on_AreaHitbox_area_entered"]
 [connection signal="area_exited" from="Ladder2/AreaHitbox" to="Ladder2" method="_on_AreaHitbox_area_exited"]
+[connection signal="is_colliding" from="Ladder3" to="." method="is_colliding"]
 [connection signal="area_entered" from="Ladder3/AreaHitbox" to="Ladder3" method="_on_AreaHitbox_area_entered"]
 [connection signal="area_exited" from="Ladder3/AreaHitbox" to="Ladder3" method="_on_AreaHitbox_area_exited"]
+[connection signal="is_colliding" from="Ladder4" to="." method="is_colliding"]
 [connection signal="area_entered" from="Ladder4/AreaHitbox" to="Ladder4" method="_on_AreaHitbox_area_entered"]
 [connection signal="area_exited" from="Ladder4/AreaHitbox" to="Ladder4" method="_on_AreaHitbox_area_exited"]
+[connection signal="is_colliding" from="Ladder5" to="." method="is_colliding"]
 [connection signal="area_entered" from="Ladder5/AreaHitbox" to="Ladder5" method="_on_AreaHitbox_area_entered"]
 [connection signal="area_exited" from="Ladder5/AreaHitbox" to="Ladder5" method="_on_AreaHitbox_area_exited"]
+[connection signal="is_colliding" from="Ladder6" to="." method="is_colliding"]
 [connection signal="area_entered" from="Ladder6/AreaHitbox" to="Ladder6" method="_on_AreaHitbox_area_entered"]
 [connection signal="area_exited" from="Ladder6/AreaHitbox" to="Ladder6" method="_on_AreaHitbox_area_exited"]
+[connection signal="is_colliding" from="Ladder7" to="." method="is_colliding"]
 [connection signal="area_entered" from="Ladder7/AreaHitbox" to="Ladder7" method="_on_AreaHitbox_area_entered"]
 [connection signal="area_exited" from="Ladder7/AreaHitbox" to="Ladder7" method="_on_AreaHitbox_area_exited"]
+[connection signal="is_colliding" from="Ladder8" to="." method="is_colliding"]
 [connection signal="area_entered" from="Ladder8/AreaHitbox" to="Ladder8" method="_on_AreaHitbox_area_entered"]
 [connection signal="area_exited" from="Ladder8/AreaHitbox" to="Ladder8" method="_on_AreaHitbox_area_exited"]
+[connection signal="is_colliding" from="Ladder9" to="." method="is_colliding"]
 [connection signal="area_entered" from="Ladder9/AreaHitbox" to="Ladder9" method="_on_AreaHitbox_area_entered"]
 [connection signal="area_exited" from="Ladder9/AreaHitbox" to="Ladder9" method="_on_AreaHitbox_area_exited"]
+[connection signal="is_colliding" from="Ladder10" to="." method="is_colliding"]
 [connection signal="area_entered" from="Ladder10/AreaHitbox" to="Ladder10" method="_on_AreaHitbox_area_entered"]
 [connection signal="area_exited" from="Ladder10/AreaHitbox" to="Ladder10" method="_on_AreaHitbox_area_exited"]
+[connection signal="is_colliding" from="Ladder11" to="." method="is_colliding"]
 [connection signal="area_entered" from="Ladder11/AreaHitbox" to="Ladder11" method="_on_AreaHitbox_area_entered"]
 [connection signal="area_exited" from="Ladder11/AreaHitbox" to="Ladder11" method="_on_AreaHitbox_area_exited"]

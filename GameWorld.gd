@@ -147,15 +147,11 @@ func _on_GameWorld_down(vein):
 
 func _on_UP_pressed():
 	# Increase Height
-	if not $Player.is_falling:
-		$Player.heightX += 1
-	else:
-		$Player.move_up()
+	if not $Player.is_ladders_colliding:
+		$Player.on_up_input()
 
 
 func _on_DOWN_pressed():
 	#Reduce Height
-	if not $Player.is_falling:
-		$Player.heightX -= 1
-	else:
-		$Player.move_down()
+	if not $Player.is_ladders_colliding:
+		$Player.on_down_input()

@@ -3,7 +3,7 @@ extends KinematicBody2D
 var score = 0
 var heightX = 1
 var is_falling = false
-
+var is_ladders_colliding = false
 signal Game_Over
 
 onready var tween = get_node("Tween")
@@ -30,12 +30,24 @@ func _on_Area2D_area_entered(area):
 		pass
 		emit_signal("Game_Over")
 		
-func _physics_process(delta):
+func _physics_process(_delta):
 	if get_parent().gameSpeed == 0:
 		heightX = 1
 		visible = false
 		return
 	$Sprite.speed_scale = get_parent().gameSpeed*0.6
+	
+	if not is_ladders_colliding:
+		handle_input()
+	
+	heightX = clamp(heightX, 1,8)
+	position.y = 503+(heightX-1)*-52.5#28.75	
+	if heightX == 1:
+		$Sprite.animation = 'run'
+	else:
+		$Sprite.animation = 'float'
+
+func handle_input():
 	if not is_falling:
 		if Input.is_action_just_released("ui_up"):
 			heightX += 1
@@ -47,15 +59,19 @@ func _physics_process(delta):
 			
 		if Input.is_action_just_released("ui_down"):
 			move_down()
-	
-	
-	heightX = clamp(heightX, 1,8)
-	position.y = 503+(heightX-1)*-52.5#28.75	
-	if heightX == 1:
-		$Sprite.animation = 'run'
+
+func on_up_input():
+	if not is_falling:
+		heightX += 1
 	else:
-		$Sprite.animation = 'float'
-		
+		move_up()
+
+func on_down_input():
+	if not is_falling:
+		heightX -= 1
+	else:
+		move_down()
+
 func move_up():
 	var seeker = tween.tell()
 	tween.reset_all()
@@ -101,3 +117,6 @@ func _on_Tween_tween_started(object, key):
 		
 		yield(get_tree().create_timer(0.05), "timeout")
 		continue
+
+func is_colliding(val:bool, obj) -> void:
+	is_ladders_colliding=val
