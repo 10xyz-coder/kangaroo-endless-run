@@ -1,14 +1,12 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/back.png" type="Texture" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GameWorld.gd" type="Script" id=3]
 [ext_resource path="res://ScrollBackground.gd" type="Script" id=4]
-[ext_resource path="res://Assets/settings.webp" type="Texture" id=5]
-[ext_resource path="res://Settings.tscn" type="PackedScene" id=6]
 [ext_resource path="res://GameOver.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/UI/Movement Buttons.png" type="Texture" id=8]
-[ext_resource path="res://Drill.tscn" type="PackedScene" id=9]
+[ext_resource path="res://GameSaver.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Audio/Better Main Theme.mp3" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=9]
@@ -23,23 +21,6 @@ font_data = SubResource( 1 )
 
 [sub_resource type="Theme" id=3]
 Label/fonts/font = SubResource( 2 )
-
-[sub_resource type="StyleBoxTexture" id=4]
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 500, 500 )
-
-[sub_resource type="StyleBoxTexture" id=8]
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 500, 500 )
-
-[sub_resource type="StyleBoxTexture" id=6]
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 500, 500 )
-
-[sub_resource type="Theme" id=7]
-Button/styles/hover = SubResource( 4 )
-Button/styles/normal = SubResource( 8 )
-Button/styles/pressed = SubResource( 6 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
@@ -67,11 +48,31 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="DynamicFontData" id=14]
+font_path = "res://Assets/MorningRainbow.ttf"
+
+[sub_resource type="DynamicFont" id=15]
+size = 44
+outline_size = 6
+outline_color = Color( 0.756863, 0, 1, 1 )
+font_data = SubResource( 14 )
+
+[sub_resource type="Theme" id=16]
+Label/fonts/font = SubResource( 15 )
+
 [node name="GameWorld" type="Node2D"]
 script = ExtResource( 3 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 297, 341 )
+current = true
+
+[node name="GameSaver" type="Node" parent="."]
+script = ExtResource( 9 )
+
 [node name="GameOver" parent="." instance=ExtResource( 7 )]
 visible = false
+position = Vector2( 15, 0 )
 
 [node name="Visibility" type="Area2D" parent="." groups=["visible"]]
 
@@ -108,10 +109,6 @@ offset = Vector2( 457.527, 113.807 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 78, 505 )
 
-[node name="Drill" parent="." instance=ExtResource( 9 )]
-position = Vector2( 108.765, 511.998 )
-scale = Vector2( 1.70114, 1 )
-
 [node name="Score" type="Label" parent="."]
 margin_left = 10.0
 margin_top = 10.0
@@ -128,21 +125,6 @@ __meta__ = {
 [node name="CoinTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
-
-[node name="Settings" type="Button" parent="."]
-margin_left = 522.0
-margin_top = 11.0
-margin_right = 585.0
-margin_bottom = 80.0
-theme = SubResource( 7 )
-expand_icon = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SettingsInterface" parent="." instance=ExtResource( 6 )]
-visible = false
-position = Vector2( 41, 90 )
 
 [node name="starter" type="Timer" parent="."]
 wait_time = 1.5
@@ -193,11 +175,22 @@ position = Vector2( 40, 39 )
 scale = Vector2( 0.6, 0.6 )
 frames = SubResource( 13 )
 
+[node name="Compliments" type="Label" parent="."]
+margin_left = 235.0
+margin_top = 26.0
+margin_right = 393.0
+margin_bottom = 70.0
+theme = SubResource( 16 )
+text = "Perfect!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="down" from="." to="." method="_on_GameWorld_down"]
 [connection signal="replay" from="GameOver" to="." method="_on_GameOver_replay"]
 [connection signal="Game_Over" from="Player" to="." method="_on_Player_Game_Over"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_CoinTimer_timeout"]
-[connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
 [connection signal="timeout" from="starter" to="." method="_on_starter_timeout"]
 [connection signal="timeout" from="WallTimer" to="." method="_on_WallTimer_timeout"]
 [connection signal="pressed" from="DOWN" to="." method="_on_DOWN_pressed"]

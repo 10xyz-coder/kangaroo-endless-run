@@ -19,6 +19,7 @@ func _ready():
 
 func _on_Exit_pressed():
 	# Go Back
+	get_parent().get_node("GameSaver").save_game()
 	get_tree().change_scene("res://Main_Menu.tscn")
 
 

@@ -12,6 +12,8 @@ config_version=4
 
 config/name="Kangaroo Endless Run"
 run/main_scene="res://Main_Menu.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="KangarooEndlessRun"
 config/icon="res://icon.png"
 
 [display]

@@ -24,17 +24,19 @@ func _on_ScoreTimer_timeout():
 func _on_Area2D_area_entered(area):
 	if area.is_in_group('coin'):
 		score += round(get_parent().gameSpeed*45)
+		get_parent().coinsCollected += 1
 		area.get_parent().get_collected()
 		
 	if area.is_in_group('danger'):
-		pass
+		$Particles2D.emitting = true
 		emit_signal("Game_Over")
 		
 func _physics_process(_delta):
 	if get_parent().gameSpeed == 0:
 		heightX = 1
-		visible = false
+		$Sprite.visible = false
 		return
+	$Sprite.visible = true
 	$Sprite.speed_scale = get_parent().gameSpeed*0.6
 	
 	if not is_ladders_colliding:
