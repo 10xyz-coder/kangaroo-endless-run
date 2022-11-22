@@ -1,10 +1,30 @@
-[gd_scene load_steps=81 format=2]
+[gd_scene load_steps=83 format=2]
 
 [ext_resource path="res://Assets/Spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://Ladder.gd" type="Script" id=3]
 [ext_resource path="res://PlayerTween.gd" type="Script" id=4]
 [ext_resource path="res://Physics/PlayerHitbox.tres" type="Shape2D" id=5]
+[ext_resource path="res://Assets/playerDeathParticles.png" type="Texture" id=6]
+
+[sub_resource type="ParticlesMaterial" id=78]
+lifetime_randomness = 0.25
+emission_shape = 5
+emission_ring_radius = 2.0
+emission_ring_inner_radius = 0.0
+emission_ring_height = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 300.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.1
+orbit_velocity_random = 0.0
+linear_accel = 20.0
+radial_accel = 1.0
+angle = 180.0
+angle_random = 1.0
+scale = 0.02
 
 [sub_resource type="AtlasTexture" id=33]
 flags = 4
@@ -382,6 +402,18 @@ extents = Vector2( 14.4339, 2.5 )
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+amount = 200
+lifetime = 2.0
+one_shot = true
+speed_scale = 4.0
+explosiveness = 1.0
+randomness = 0.52
+draw_order = 1
+process_material = SubResource( 78 )
+texture = ExtResource( 6 )
+
 [node name="Tween" type="Tween" parent="."]
 script = ExtResource( 4 )
 
@@ -393,6 +425,9 @@ animation = "float"
 frame = 7
 speed_scale = 0.8
 
+[node name="ScoreTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 3.97363, 3.11892 )
 shape = ExtResource( 5 )
@@ -403,9 +438,6 @@ collision_mask = 14
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 12.5027, 3.49245 )
 shape = ExtResource( 5 )
-
-[node name="ScoreTimer" type="Timer" parent="."]
-wait_time = 0.5
 
 [node name="Ladder1" type="AnimatedSprite" parent="."]
 position = Vector2( 15, 57.5 )
@@ -624,8 +656,8 @@ shape = SubResource( 66 )
 
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 [connection signal="tween_started" from="Tween" to="." method="_on_Tween_tween_started"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_entered" from="Ladder1/AreaHitbox" to="Ladder1" method="_on_AreaHitbox_area_entered"]
 [connection signal="area_exited" from="Ladder1/AreaHitbox" to="Ladder1" method="_on_AreaHitbox_area_exited"]
 [connection signal="area_entered" from="Ladder2/AreaHitbox" to="Ladder2" method="_on_AreaHitbox_area_entered"]

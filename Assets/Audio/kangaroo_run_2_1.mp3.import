@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/kangaroo_run_2_1.mp3-da7781e2a3e18edc04da34759bba92c3.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/kangaroo_run_2_1.mp3"
+dest_files=[ "res://.import/kangaroo_run_2_1.mp3-da7781e2a3e18edc04da34759bba92c3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
