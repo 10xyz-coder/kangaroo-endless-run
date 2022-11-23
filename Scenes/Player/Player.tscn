@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Player/Ladders/LadderManager.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+speed = 100
+
+[node name="Kangaroo" type="Sprite" parent="."]
+position = Vector2( -9, 0 )
+texture = ExtResource( 1 )
+centered = false
+hframes = 30
+region_enabled = true
+region_rect = Rect2( 0, 32, 1440, 32 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Ladders" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 16, 16 )
+shape = SubResource( 1 )
+
+[node name="CooldownTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_Timer_timeout"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Objects/Ladder.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[node name="Ladder" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="Ladder" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+hframes = 30
+vframes = 2
+region_enabled = true
+region_rect = Rect2( 0, 130, 960, 62 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 16, 16 )
+shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+rect = Rect2( 0, 0, 32, 32 )
+
+[connection signal="area_shape_entered" from="." to="." method="_on_Ladder_area_shape_entered"]
