@@ -55,11 +55,8 @@ margin_right = 170.0
 margin_bottom = 677.0
 theme = ExtResource( 4 )
 text = "Highscore :"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 autoplay = true
 

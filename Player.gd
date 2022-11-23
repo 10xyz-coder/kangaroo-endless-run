@@ -26,7 +26,7 @@ func _on_Area2D_area_entered(area):
 		score += round(get_parent().gameSpeed*45)
 		get_parent().coinsCollected += 1
 		area.get_parent().get_collected()
-		
+		print_debug("Coin collected")
 	if area.is_in_group('danger'):
 		$Particles2D.emitting = true
 		emit_signal("Game_Over")

@@ -14,22 +14,27 @@ var shake_amount = 0.0
 var shake_power = 0.0
 var compliments = ["Perfect", "Superb", "Wondeful", "Mesmerising"]
 var betterCompliments = ["Perfect!", "Superb!", "Wondeful!", "Mesmerising!", "Brilliant!", "Lovely!", "Magical!", "Excellent!"]
+var audio_player_sfx: AudioStreamPlayer
+
 onready var camera = get_node("Camera2D")
 var incrementor = 0.5
-
+var coin_label: Label
 signal down(vein)
 
 
 func _ready():
 	$GameOver.visible = false
 	totalScore = 0
-	coinsCollected = 0
+	audio_player_sfx = $SoundFX
 	$Compliments.visible = false
 	$GameSaver.load_game()
 	camera.set_offset(Vector2(0, 0))
+	coin_label = $Coins
+	coinsCollected = 0
 
 func _process(delta):
 	$Score.text = str($Player.score)
+	coin_label.text = str(coinsCollected)
 	if shake_amount > 0.1:
 		camera.set_offset(Vector2(rand_range(-1.0, 1.0) * shake_amount, rand_range(-1.0, 1.0) * shake_amount ))
 	if shake_power > 0.1:
@@ -69,6 +74,7 @@ func _on_CoinTimer_timeout():
 	if gameSpeed == 0:
 		return
 	var Coin = coin.instance()
+	Coin.game_world = self
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	var coinHeight = rng.randf_range(0, 8)
@@ -188,6 +194,7 @@ func _on_Player_Game_Over():
 	$GameOver/Background/highscore.text = "HIGHEST SCORE : " + str(highScore)
 	totalScore += $Player.score
 	$GameSaver.save_game()
+	coinsCollected = 0
 
 
 func _on_GameOver_replay():
@@ -201,7 +208,7 @@ func _on_GameOver_replay():
 	$Player.score = 0
 	$Player.visible = true
 	camera.set_offset(Vector2(0, 0))
-
+	coinsCollected = 0
 
 func _on_GameWorld_down(vein):
 	# Make the Stairs go Down

@@ -118,9 +118,17 @@ rect_rotation = -0.238729
 theme = SubResource( 3 )
 text = "
 "
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="Coins" type="Label" parent="."]
+margin_left = 217.333
+margin_top = 1.33334
+margin_right = 329.333
+margin_bottom = 66.3333
+rect_rotation = -0.238729
+theme = SubResource( 3 )
+text = "0"
+align = 1
+valign = 1
 
 [node name="CoinTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -183,9 +191,9 @@ margin_bottom = 70.0
 theme = SubResource( 16 )
 text = "Perfect!"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="SoundFX" type="AudioStreamPlayer" parent="."]
+bus = "SoundFX"
 
 [connection signal="down" from="." to="." method="_on_GameWorld_down"]
 [connection signal="replay" from="GameOver" to="." method="_on_GameOver_replay"]

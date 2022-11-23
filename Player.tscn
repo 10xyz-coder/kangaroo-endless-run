@@ -13,6 +13,7 @@ emission_shape = 5
 emission_ring_radius = 2.0
 emission_ring_inner_radius = 0.0
 emission_ring_height = 1.0
+emission_ring_axis = Vector3( 0, 0, 1 )
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
