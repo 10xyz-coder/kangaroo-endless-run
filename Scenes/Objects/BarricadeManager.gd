@@ -18,6 +18,7 @@ func generate_barricades(num:int, gap:int) -> void:
 
 func generate_barricade(index:int, col:int) -> Node2D:
 	var barricade_instance = barricade.instance()
+	barricade_instance.add_to_group("Barricades")
 	var size_of_barricade = Gamemanager.cell_size
 	barricade_instance.position = Vector2(size_of_barricade.x*col, size_of_barricade.y*index)
 	barricade_instance.velocity = Vector2(-speed, 0)

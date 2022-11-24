@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Player/Ladders/LadderManager.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Objects/Ladder.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Player/Ladders/Ladder.tscn" type="PackedScene" id=2]
 
 [node name="Ladders" type="Node2D"]
 position = Vector2( 0, 32 )
 script = ExtResource( 1 )
 ladder_scene = ExtResource( 2 )
+ladder_speed = -5000.0

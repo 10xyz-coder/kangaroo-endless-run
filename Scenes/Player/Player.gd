@@ -1,15 +1,10 @@
 extends KinematicBody2D
 
-
-
 # The speed at which the player moves
 export(int, 1, 200, 5) var speed:float = 10
-
+export(int, 5, 500, 5) var max_speed:float = 10
 var can_move:bool = true
-var timer:Timer
-# The position where the ladder will be placed
-var ladder_position : Vector2 = Vector2(0,0)
-var ladder_manager: Node2D
+
 # The cell positions are 0 indexed, so the first cell is 0
 var target_cell:int=-1
 var current_cell:int=8
@@ -17,19 +12,27 @@ var current_cell:int=8
 var velocity:Vector2 = Vector2(0,0)
 var acceleration:Vector2 = Vector2(0,0)
 
+# Ladder variables
+var ladder_manager: LadderManager
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	ladder_manager = $Ladders
-	ladder_position=ladder_manager.position
 	position.y=current_cell*Gamemanager.cell_size.y
-	timer = $CooldownTimer
+	ladder_manager=$Ladders
 	# Generate the ladders to the height of the player
 	generate_ladders()
-func _process(_delta: float) -> void:
-	current_cell= round(position.y/Gamemanager.cell_size.y)
+
+func _physics_process(delta: float) -> void:
+	current_cell= int(round(position.y/Gamemanager.cell_size.y))
 	# Update velocity and acceleration
-	velocity.y += acceleration.y * _delta
-	velocity.y = clamp(velocity.y, -speed*2, speed*2)
+	velocity.y += acceleration.y * delta
+	velocity.y = clamp(velocity.y, -max_speed, max_speed)
+	# Check collision
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		# If the player is moving down, and collides with a ladder, then move the ladder to the next cell
+		if collision.collider.get("ladder_id") != null and velocity.y > 0:
+			ladder_manager.move_ladders_down()
 	# Update position
 	if target_cell!=-1:
 		# If the player is moving to a cell, move to that cell
@@ -40,19 +43,16 @@ func _process(_delta: float) -> void:
 			velocity.y=0
 			acceleration.y=0
 			can_move=true
-		else:
-			# Move to the target cell in the direction of the target cell
-			position.y+=velocity.y*_delta
 
 func _input(event: InputEvent) -> void:
 
-	if event.is_action_pressed("ui_up") and can_move:
+	if event.is_action_pressed("ui_up", true) and can_move:
 		if target_cell==-1:
 			target_cell=current_cell
 		target_cell-=1
 		move_to(target_cell)
 		can_move=false
-	elif event.is_action_pressed("ui_down") and can_move:
+	elif event.is_action_pressed("ui_down", true) and can_move:
 		if target_cell==-1:
 			target_cell=current_cell
 		target_cell+=1
@@ -86,9 +86,4 @@ func generate_ladders():
 	# Generate the ladders to the height of the player
 	var ladder_count:int=Gamemanager.cell_count-current_cell-1
 	print_debug("Generating "+str(ladder_count)+" ladders")
-	for i in range(ladder_count):
-		ladder_manager.add_ladder()
-
-
-func _on_Timer_timeout() -> void:
-	can_move=true
+	ladder_manager.generate_ladders(ladder_count)

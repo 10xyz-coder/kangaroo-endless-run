@@ -9,26 +9,29 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Area2D",
+"base": "KinematicBody2D",
 "class": "Ladder",
 "language": "GDScript",
-"path": "res://Scenes/Objects/Ladder.gd"
+"path": "res://Scenes/Player/Ladders/Ladder.gd"
+}, {
+"base": "Node2D",
+"class": "LadderManager",
+"language": "GDScript",
+"path": "res://Scenes/Player/Ladders/LadderManager.gd"
 } ]
 _global_script_class_icons={
-"Ladder": ""
+"Ladder": "",
+"LadderManager": ""
 }
 
 [application]
 
 config/name="Kangaroo Endless Run"
-<<<<<<< Updated upstream
-run/main_scene="res://Main_Menu.tscn"
+run/main_scene="res://Scenes/UI/Main_Menu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="KangarooEndlessRun"
-=======
-run/main_scene="res://Scenes/UI/Main_Menu.tscn"
->>>>>>> Stashed changes
-config/icon="res://icon.png"
+config/icon="res://Assets/Kangaroo.png"
+<<<<<<<Updatedupstreamrun/main_scene="res://Main_Menu.tscn"
 
 [autoload]
 
