@@ -13,12 +13,12 @@ labels:
     size-below: 1000
   - label: "xlarge-diff"
     size-above: 999
-   - label: "script"
+  - label: "script"
     files:
       - "**/*.gd"
-   - label: "scene"
+  - label: "scene"
     files:
-      - "**/*.tcsn"
-   - label: "project"
+      - "**/*.tscn"
+  - label: "project"
     files:
       - "project.godot"
