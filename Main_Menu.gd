@@ -1,13 +1,17 @@
 extends Node2D
 
-
+var currentTimer = 0.0
 
 
 func _ready():
 	load_game()
+	currentTimer = 0.0
+	
+func _process(delta):
+	$Title.rect_rotation = (sin(currentTimer*380)*5+0)
 
 func _on_Play_pressed():
-	get_tree().change_scene("res://GameWorld.tscn")
+	get_tree().change_scene("res://Scenes/GameWorld.tscn")
 	
 
 func load_game():
@@ -27,3 +31,7 @@ func load_game():
 
 #func _on_Shop_pressed():
 #	get_tree().change_scene("res://Shop.tscn")
+
+
+func _on_Timer_timeout():
+	currentTimer += (0.05)

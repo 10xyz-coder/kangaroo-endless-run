@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Text.tres" type="Theme" id=1]
+[ext_resource path="res://Shop.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.67451, 0.509804, 0.164706, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.67451, 0.509804, 0.164706, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.67451, 0.509804, 0.164706, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.67451, 0.509804, 0.164706, 1 )
+
+[sub_resource type="Theme" id=5]
+Button/styles/focus = SubResource( 1 )
+Button/styles/hover = SubResource( 2 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.0470588, 0.933333, 1, 1 )
+
+[sub_resource type="Theme" id=8]
+ProgressBar/styles/bg = SubResource( 6 )
+ProgressBar/styles/fg = SubResource( 7 )
+
+[node name="Shop" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Body" type="ColorRect" parent="."]
+margin_right = 604.0
+margin_bottom = 688.0
+theme = ExtResource( 1 )
+color = Color( 0.67451, 0.509804, 0.164706, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Body"]
+margin_top = 11.0
+margin_right = 603.0
+margin_bottom = 56.0
+text = "Shop"
+align = 1
+valign = 1
+
+[node name="woodBuy" type="ColorRect" parent="Body"]
+margin_left = 30.0
+margin_top = 110.0
+margin_right = 258.0
+margin_bottom = 330.0
+color = Color( 0.784314, 0.611765, 0.247059, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Body/woodBuy"]
+margin_left = 56.0
+margin_top = 14.0
+margin_right = 166.0
+margin_bottom = 46.0
+text = "Magnet"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Body/woodBuy"]
+margin_left = 49.0
+margin_top = 173.0
+margin_right = 166.0
+margin_bottom = 193.0
+theme = SubResource( 5 )
+text = "Buy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Progress" type="ProgressBar" parent="Body/woodBuy"]
+margin_left = 17.0
+margin_top = 200.0
+margin_right = 207.0
+margin_bottom = 214.0
+size_flags_horizontal = 3
+theme = SubResource( 8 )
+max_value = 3.0
+step = 1.0
+value = 1.0
+rounded = true
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}

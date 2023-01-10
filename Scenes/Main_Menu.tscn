@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Main_Menu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Background.png" type="Texture" id=2]
+[ext_resource path="res://Assets/UI/UI_game_kangaroo_play.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Audio/kangaroo_run_2_1.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Text.tres" type="Theme" id=5]
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 533, 152 )
+margin_bottom = 7.359
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 533, 152 )
+margin_left = 25.0
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 533, 152 )
+
+[sub_resource type="Theme" id=2]
+Button/styles/hover = SubResource( 3 )
+Button/styles/normal = SubResource( 1 )
+Button/styles/pressed = SubResource( 4 )
+
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://Assets/MorningRainbow.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 45
+outline_size = 8
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 5 )
+
+[sub_resource type="Theme" id=7]
+Label/fonts/font = SubResource( 6 )
+
+[node name="Main_Menu" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Play" type="Button" parent="."]
+margin_left = 202.0
+margin_top = 300.0
+margin_right = 240.0
+margin_bottom = 320.0
+rect_scale = Vector2( 4.85619, 4.12568 )
+theme = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 303, 343 )
+scale = Vector2( 0.946875, 1.90556 )
+z_index = -1
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="highscore" type="Label" parent="."]
+margin_left = 12.0
+margin_top = 645.0
+margin_right = 170.0
+margin_bottom = 677.0
+theme = ExtResource( 5 )
+text = "Highscore :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="Title" type="Label" parent="."]
+margin_left = 60.0
+margin_top = 56.0
+margin_right = 530.0
+margin_bottom = 102.0
+rect_pivot_offset = Vector2( 235, 21 )
+theme = SubResource( 7 )
+text = "Kangaroo Endless Run"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
