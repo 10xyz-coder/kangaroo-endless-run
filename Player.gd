@@ -22,10 +22,10 @@ func _on_ScoreTimer_timeout():
 
 
 func _on_Area2D_area_entered(area):
-	if area.is_in_group('coin'):
-		score += round(get_parent().gameSpeed*45)
-		get_parent().coinsCollected += 1
-		area.get_parent().get_collected()
+	#if area.is_in_group('coin'):
+	#	score += round(get_parent().gameSpeed*45)
+	#	get_parent().coinsCollected += 1
+	#	area.get_parent().get_collected()
 		
 	if area.is_in_group('danger'):
 		$Particles2D.emitting = true
@@ -43,7 +43,11 @@ func _physics_process(delta):
 			heightX += 1
 		if Input.is_action_just_released("ui_down"):
 			heightX -= 1
+		position.y = 503+(heightX-1)*-52.5
 	else:
+		position.y += 10
+		if position.y > (503+(heightX-1)*-52.5):
+			is_falling = false
 		if Input.is_action_just_released("ui_up"):
 			move_up()
 			
@@ -52,43 +56,55 @@ func _physics_process(delta):
 	
 	
 	heightX = clamp(heightX, 1,8)
-	position.y = 503+(heightX-1)*-52.5#28.75	
+	#position.y = 503+(heightX-1)*-52.5#28.75	
 	if heightX == 1:
 		$Sprite.animation = 'run'
 	else:
 		$Sprite.animation = 'float'
 		
-func move_up():
+func check_coin():
 	var seeker = tween.tell()
 	tween.reset_all()
-	heightX += 1
 	is_falling = true
 	tween.interpolate_property(self, "position",
 			Vector2(position.x, position.y), Vector2(position.x, 503+(heightX-1)*-52.5), 1,
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	tween.seek(seeker)
+
+func move_up():
+	#var seeker = tween.tell()
+	#tween.reset_all()
+	heightX += 1
+	heightX = clamp(heightX, 1, 8)
+	#is_falling = true
+	#tween.interpolate_property(self, "position",
+	#		Vector2(position.x, position.y), Vector2(position.x, 503+(heightX-1)*-52.5), 1,
+	#		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	#tween.start()
+	#tween.seek(seeker)
 	
 func move_down():
-	var seeker = tween.tell()
-	tween.reset_all()
+	#var seeker = tween.tell()
+	#tween.reset_all()
 	heightX -= 1
-	is_falling = true
-	tween.interpolate_property(self, "position",
-			Vector2(position.x, position.y), Vector2(position.x, 503+(heightX-1)*-52.5), 1,
-			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
-	tween.seek(seeker)
+	heightX = clamp(heightX, 1, 8)
+	#is_falling = true
+	#tween.interpolate_property(self, "position",
+	#		Vector2(position.x, position.y), Vector2(position.x, 503+(heightX-1)*-52.5), 1,
+	#		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	#tween.start()
+	#tween.seek(seeker)
 		
 
 func reduce_height(power):
 	heightX -= power
 	heightX = clamp(heightX, 1, 8)
-	tween.interpolate_property(self, "position",
-			Vector2(position.x, position.y), Vector2(position.x, 503+(heightX-1)*-52.5), 1,
-			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	#tween.interpolate_property(self, "position",
+	#		Vector2(position.x, position.y), Vector2(position.x, 503+(heightX-1)*-52.5), 1,
+	#		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	is_falling = true
-	tween.start()
+	#tween.start()
 
 
 func _on_Tween_tween_completed(object, key):

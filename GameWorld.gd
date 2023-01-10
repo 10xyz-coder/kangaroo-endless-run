@@ -1,8 +1,8 @@
 extends Node2D
 
-var coin = preload("res://coin.tscn")
-var bar = preload("res://Barricade.tscn")
-var drill_object = preload("res://Drill.tscn")
+var coin = preload("res://Scenes/coin.tscn")
+var bar = preload("res://Scenes/Barricade.tscn")
+var drill_object = preload("res://Scenes/Drill.tscn")
 var gameSpeed = 1
 var downPower = 0
 var totalScore = 0
@@ -13,7 +13,7 @@ var coinsCollected = 0
 var shake_amount = 0.0
 var shake_power = 0.0
 var compliments = ["Perfect", "Superb", "Wondeful", "Mesmerising"]
-var betterCompliments = ["Perfect!", "Superb!", "Wondeful!", "Mesmerising!", "Brilliant!", "Lovely!", "Magical!", "Excellent!"]
+var betterCompliments = ["Perfect!", "Superb!", "Wondeful!", "Mesmerising!", "Brilliant!", "Lovely!", "Excellent!"]
 onready var camera = get_node("Camera2D")
 var incrementor = 0.5
 
@@ -72,7 +72,7 @@ func _on_CoinTimer_timeout():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	var coinHeight = rng.randf_range(0, 8)
-	var position = (503 + (coinHeight-1)*-52) #rng.randf_range(35, 500)
+	var position = (490 + (coinHeight-1)*-52) #rng.randf_range(35, 500)
 	Coin.set_position(Vector2(545, position))
 	add_child(Coin)
 	if gameSpeed != 0:

@@ -20,3 +20,10 @@ func _physics_process(delta):
 	if get_parent().gameSpeed == 0:
 		queue_free()
 	position.x -= get_parent().gameSpeed
+
+
+func _on_Area2D_area_entered(area):
+	if area.is_in_group('player'):
+		area.get_parent().score += round(get_parent().gameSpeed*45)
+		get_parent().coinsCollected += 1
+		get_collected()
