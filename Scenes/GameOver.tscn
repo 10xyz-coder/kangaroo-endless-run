@@ -105,9 +105,6 @@ margin_top = 266.0
 margin_right = 378.0
 margin_bottom = 319.0
 theme = SubResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Play" type="Button" parent="Background"]
 margin_left = 186.0

@@ -14,7 +14,7 @@ config/name="Kangaroo Endless Run"
 run/main_scene="res://Scenes/Main_Menu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="KangarooEndlessRun"
-config/icon="res://icon.png"
+config/icon="res://Assets/kerIcon.ico"
 
 [display]
 

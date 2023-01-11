@@ -49,7 +49,7 @@ animations = [ {
 } ]
 
 [sub_resource type="DynamicFontData" id=14]
-font_path = "res://Assets/MorningRainbow.ttf"
+font_path = "res://Assets/UI/GladlyAcceptRegular-Wyjov.ttf"
 
 [sub_resource type="DynamicFont" id=15]
 size = 44
