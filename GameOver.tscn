@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Text.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/UI/UI_game_kangaroo_playAgain.png" type="Texture" id=2]
 [ext_resource path="res://Assets/UI/UI_game_kangaroo_exit.png" type="Texture" id=3]
 [ext_resource path="res://GameOver.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Kangaroo.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Assets/MorningRainbow.ttf"
@@ -105,9 +106,6 @@ margin_top = 266.0
 margin_right = 378.0
 margin_bottom = 319.0
 theme = SubResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Play" type="Button" parent="Background"]
 margin_left = 186.0
@@ -118,6 +116,11 @@ theme = SubResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 465, 160 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 5 )
 
 [connection signal="pressed" from="Background/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="pressed" from="Background/Play" to="." method="_on_Play_pressed"]

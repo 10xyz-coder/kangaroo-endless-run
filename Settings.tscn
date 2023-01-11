@@ -39,9 +39,6 @@ margin_top = 1.0
 margin_right = 521.0
 margin_bottom = 476.0
 color = Color( 0.67451, 0.509804, 0.164706, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Title" type="Label" parent="Body"]
 margin_left = 122.0
@@ -52,9 +49,6 @@ theme = SubResource( 3 )
 text = "SETTINGS"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Diff" type="Label" parent="Body"]
 margin_left = 219.0
